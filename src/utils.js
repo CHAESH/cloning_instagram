@@ -5,6 +5,7 @@ dotenv.config({ path: path.resolve(__dirname, ".env") });
 import { adjectives, nouns } from "./words";
 import nodemailer from "nodemailer";
 import mgTransport from "nodemailer-mailgun-transport";
+import jwt from "jsonwebtoken";
 
 export const generateSecret = () => {
   const randomNumber = Math.floor(Math.random() * adjectives.length);
@@ -31,3 +32,6 @@ export const sendSecretMail = (adress, secret) => {
   };
   return sendMail(emailData);
 };
+
+// JWT 토큰 암호화에 쓰이는 secret = 해독할 떄 쓰이는 secret
+export const generateToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET);
