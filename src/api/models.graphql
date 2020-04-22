@@ -29,7 +29,7 @@ type Post {
   comments: [Comment!]!
   isLiked: Boolean!
   likeCount: Int!
-  createdAt: String!
+  createdAt: String
   updatedAt: String
 }
 
@@ -37,7 +37,7 @@ type Like {
   id: ID!
   user: User!
   post: Post!
-  createdAt: String!
+  createdAt: String
   updatedAt: String
 }
 
@@ -46,7 +46,7 @@ type Comment {
   text: String!
   user: User!
   post: Post!
-  createdAt: String!
+  createdAt: String
   updatedAt: String
 }
 
@@ -54,7 +54,7 @@ type File {
   id: ID!
   url: String!
   post: Post!
-  createdAt: String!
+  createdAt: String
   updatedAt: String
 }
 
@@ -62,7 +62,7 @@ type Room {
   id: ID!
   participants: [User!]!
   messages: [Message!]!
-  createdAt: String!
+  createdAt: String
   updatedAt: String
 }
 
@@ -72,13 +72,13 @@ type Message {
   from: User!
   to: User!
   room: Room!
-  createdAt: String!
+  createdAt: String
   updatedAt: String
 }
 
 type UserProfile {
   user: User!
   posts: [Post!]!
-  createdAt: String!
+  createdAt: String
   updatedAt: String
 }
