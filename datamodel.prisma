@@ -7,40 +7,40 @@ type User {
   bio: String
   following: [User!]! @relation(name: "FlollowRelation")
   followers: [User!]! @relation(name: "FlollowRelation")
-  posts: [Post!]!
-  likes: [Like!]!
-  comments: [Comment!]!
+  posts: [Post!]! @relation(name: "PostOfUser", onDelete: CASCADE)
+  likes: [Like!]! @relation(name: "LikeOfUser", onDelete: CASCADE)
+  comments: [Comment!]! @relation(name: "CommentOfUser", onDelete: CASCADE)
   rooms: [Room!]!
   loginSecret: String
 }
 
 type Post {
   id: ID! @id
-  files: [File!]!
+  files: [File!]! @relation(name: "FilesOfPost", onDelete: CASCADE)
   location: String
   caption: String!
-  user: User!
-  likes: [Like!]!
-  comments: [Comment!]!
+  user: User @relation(name: "PostOfUser")
+  likes: [Like!]! @relation(name: "LikeOfPost", onDelete: CASCADE)
+  comments: [Comment!]! @relation(name: "CommentOfPost", onDelete: CASCADE)
 }
 
 type Like {
   id: ID! @id
-  user: User!
-  post: Post!
+  user: User @relation(name: "LikeOfUser")
+  post: Post @relation(name: "LikeOfPost")
 }
 
 type Comment {
   id: ID! @id
   text: String!
-  user: User!
-  post: Post!
+  user: User @relation(name: "CommentOfUser")
+  post: Post @relation(name: "CommentOfPost")
 }
 
 type File {
   id: ID! @id
   url: String!
-  post: Post!
+  post: Post @relation(name: "FilesOfPost")
 }
 
 type Room {
