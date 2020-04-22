@@ -16,10 +16,12 @@ export default {
         })
         .aggregate()
         .count();
+      const files = await prisma.post({ id }).files();
       return {
         post,
         comments,
         likeCount,
+        files,
       };
     },
   },
