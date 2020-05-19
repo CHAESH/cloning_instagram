@@ -4,3 +4,9 @@ export const isAuthenticated = (request) => {
   }
   return;
 };
+
+export const AuthenticatedUser = (request) => {
+  const auth = request.headers.authorization || "";
+  console.log(auth);
+  return null;
+};
